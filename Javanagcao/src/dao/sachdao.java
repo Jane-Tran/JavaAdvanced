@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 import bean.sachbean;
 public class sachdao {
