@@ -5,34 +5,28 @@ import java.util.ArrayList;
 import model.bean.giohangbean;
 
 public class giohangbo {
-	
-	ArrayList<giohangbean> ds = new ArrayList<giohangbean>();
-	
+	//Lưu thông tin trong bộ nhớ với ArrayList<giohangbean>
+	public ArrayList<giohangbean> ds = new ArrayList<giohangbean>();
+	//Hàm thêm mới vào giỏ hàng và thay đổi sô lượng khi mặt hàng đã tồn tại
+	//Tái sử dụng cho trường hợp cập số lượng 
 	public void Add(String masach, String tensach, String anh, long gia, long soluong) {
-		ds.add(new giohangbean(masach,tensach,anh, gia,soluong));
-		ArrayList<giohangbean> dsgh = new ArrayList<giohangbean>();
-		int flagTheFirst = 0;
-		for(giohangbean dsgio: ds) {
-			if(flagTheFirst == 0) {
-				dsgh.add(dsgio);
-				flagTheFirst = 1;
-			}else {
-				int flagTheFirstFind = 0;
-				for(giohangbean dsghtemps: ds) {
-					if(dsghtemps.getMasach().equals(dsgio.getMasach())) {
-						flagTheFirstFind = 1;
-						dsghtemps.setSoluong(dsghtemps.getSoluong()+1);
-						dsghtemps.setThanhtien(dsghtemps.getGia()*dsghtemps.getSoluong());
-					}
+		if(ds.isEmpty())
+			ds.add(new giohangbean(masach,tensach,anh, gia,soluong));
+		else {
+			int flag =0;
+			for(giohangbean dsi: ds) {
+				if(dsi.getMasach().equals(masach)) {
+					dsi.setSoluong(dsi.getSoluong()+soluong);
+					dsi.setThanhtien(dsi.getGia()*dsi.getSoluong());
+					flag =1;
 				}
-				if(flagTheFirstFind == 0) {
-					dsgh.add(dsgio);
-				}
-				
 			}
+			if(flag == 0)
+				ds.add(new giohangbean(masach,tensach,anh, gia,soluong));
 		}
-		ds=dsgh;
 	}
+	
+	//Hàm tính tổng tiền của tất cả
 	public Long Sum() {
 		long s=0;
 		for (giohangbean sach:ds) {
@@ -40,8 +34,9 @@ public class giohangbo {
 		}
 		return s;
 	}
+	
+	//Đếm số lượng của mỗi loại riêng biệt
 	public int Count(){
-		System.out.println(ds.size());
 		return ds.size();
 	}
 	public ArrayList<giohangbean> GetListgiohang(ArrayList<giohangbean> gh){

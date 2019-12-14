@@ -27,7 +27,13 @@
 .cart_item_image
 {
 	width: 133px;
-	height: 133px;
+	height: 140px;
+	float: left;
+}
+.cart_item_image_title
+{
+	width: 133px;
+	height: 30px;
 	float: left;
 }
 .cart_item_image img

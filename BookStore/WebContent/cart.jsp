@@ -1,3 +1,5 @@
+<%@page import="model.bean.giohangbean"%>
+<%@page import="model.bo.giohangbo"%>
 <%@page import="model.bean.loaibean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.dao.sachdao"%>
@@ -22,6 +24,16 @@
 </head>
 
 <body>
+<%
+giohangbo gh=(giohangbo)session.getAttribute("gh");
+int count=0;
+long total=0;
+try{
+	count=gh.Count();
+	total=gh.Sum();
+}catch(Exception e){
+	
+}%>
     <div class="super_container">
         <!-- Header -->
         <header class="header">
@@ -63,7 +75,7 @@
                         <!-- Logo -->
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
-                                <div class="logo"><a href="#">BookStore</a></div>
+                                <div class="logo"><a href="sachController">BookStore</a></div>
                             </div>
                         </div>
 
@@ -106,11 +118,11 @@
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
                                             <img src="images/cart.png" alt="">
-                                            <div class="cart_count"><span>10</span></div>
+                                            <div class="cart_count"><span><%=session.getAttribute("gh")==null?0:count%></span></div>
                                         </div>
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="#">Cart</a></div>
-                                            <div class="cart_price">$85</div>
+                                            <div class="cart_price" style="font-size:10px"><%=session.getAttribute("gh")==null?0:total%> đ</div>
                                         </div>
                                     </div>
                                 </div>
@@ -167,48 +179,77 @@
 						<div class="cart_container">
 							<div class="cart_title">Shopping Cart</div>
 							<div class="cart_items">
+								<%if(gh !=null){ %>
 								<ul class="cart_list">
-									<li class="cart_item clearfix">
-										<div class="cart_item_image"><img src="images/shopping_cart.jpg" alt=""></div>
-										<div
+									<li class="cart_item clearfix" style="background: linear-gradient( #0e8ce470,#f8f9fa)">
+											<div class="cart_item_image_title" style="width: 133px;float: left;height: 10px;"></div>
+											<div
 											class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
 											<div class="cart_item_name cart_info_col">
 												<div class="cart_item_title">Name</div>
-												<div class="cart_item_text">MacBook Air 13</div>
 											</div>
-											<div class="cart_item_color cart_info_col">
-												<div class="cart_item_title">Color</div>
-												<div class="cart_item_text"><span
-														style="background-color:#999999;"></span>Silver</div>
-											</div>
+											
 											<div class="cart_item_quantity cart_info_col">
 												<div class="cart_item_title">Quantity</div>
-												<div class="cart_item_text">1</div>
 											</div>
+											
 											<div class="cart_item_price cart_info_col">
 												<div class="cart_item_title">Price</div>
-												<div class="cart_item_text">$2000</div>
 											</div>
 											<div class="cart_item_total cart_info_col">
 												<div class="cart_item_title">Total</div>
-												<div class="cart_item_text">$2000</div>
+											</div>
+										</div>
+										
+									</li>
+									<hr><hr>
+									<% for(giohangbean g:gh.ds){%>
+									<li class="cart_item clearfix">
+										<div class="cart_item_image"><img src="<%=g.getAnh() %>" alt=""></div>
+											<div
+											class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
+											<div class="cart_item_name cart_info_col">
+												<div class="cart_item_text"><%=g.getTensach() %></div>
+											</div>
+											
+											<div class="cart_item_quantity cart_info_col">
+												<div class="cart_item_text"><%=g.getSoluong() %></div>
+											</div>
+											
+											<div class="cart_item_price cart_info_col">
+												<div class="cart_item_text"><%=g.getGia()%> đ</div>
+											</div>
+											<div class="cart_item_total cart_info_col">
+												<div class="cart_item_text"><%=g.getThanhtien()%> đ</div>
 											</div>
 										</div>
 									</li>
+									<hr>
 								</ul>
+									<%}}else { %>
+									<h2>Giỏ hàng trống !!!</h2>
+									<%} %>
 							</div>
 
 							<!-- Order Total -->
 							<div class="order_total">
 								<div class="order_total_content text-md-right">
 									<div class="order_total_title">Order Total:</div>
-									<div class="order_total_amount">$2000</div>
+									<div class="order_total_amount"><%=total%> đ</div>
 								</div>
 							</div>
 
 							<div class="cart_buttons">
-								<button type="button" class="button cart_button_clear">Add to Cart</button>
-								<button type="button" class="button cart_button_checkout">Add to Cart</button>
+								<button type="button" class="button cart_button_clear">Update Cart</button>
+								<a 
+									<%if(session.getAttribute("makh")==null){ %> 
+										href="#myModal" data-toggle="modal"
+									<%} else{ %> 
+									href="checkoutController"
+									<%} %>
+								type="button" class="button cart_button_checkout">
+								Proceed to ordering
+								</a>
 							</div>
 						</div>
 					</div>

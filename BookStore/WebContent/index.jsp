@@ -25,9 +25,10 @@
 <%
 giohangbo Counttype=(giohangbo)session.getAttribute("gh");
 int count=0;
+long total=0;
 try{
 	count=Counttype.Count();
-	
+	total=Counttype.Sum();
 }catch(Exception e){
 	
 }%>
@@ -72,7 +73,7 @@ try{
                         <!-- Logo -->
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
-                                <div class="logo"><a href="#">BookStore</a></div>
+                                <div class="logo"><a href="sachController">BookStore</a></div>
                             </div>
                         </div>
 
@@ -114,12 +115,14 @@ try{
                                 <div class="cart">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
-                                            <img src="images/cart.png" alt="">
+                                        	<a href="viewCartController">
+                                           	 <img src="images/cart.png" alt="">
+                                            </a>
                                             <div class="cart_count"><span><%=session.getAttribute("gh")==null?0:count%></span></div>
                                         </div>
                                         <div class="cart_content">
-                                            <div class="cart_text"><a href="#">Cart</a></div>
-                                            <div class="cart_price">0 đ</div>
+                                            <div class="cart_text"><a href="viewCartController">Cart</a></div>
+                                            <div class="cart_price" style="font-size: 10px;"><%=session.getAttribute("gh")==null?0:total%> đ</div>
                                         </div>
                                     </div>
                                 </div>
