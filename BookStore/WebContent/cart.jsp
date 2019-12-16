@@ -103,7 +103,9 @@ try{
                                 <%if(session.getAttribute("hoten")!=null){ %>
                                 <div class="user_icon mr-5 " data-toggle="dropdown"><img src="images/user.svg"  alt="account"><%=session.getAttribute("hoten") %></div>
                                 <div class="dropdown-menu ">
-			                        <a href="logoutController"class="dropdown-item">Logout</a>
+			                        <a href="historyController"class="dropdown-item"><i class="fas fa-scroll"></i> History buy</a>
+			                        <div class="dropdown-divider"></div>
+			                        <a href="logoutController"class="dropdown-item"> <i class="fas fa-sign-out-alt"></i> Logout</a>
 			                    </div>
                                 <%} else { %>
                                     <div class="top_bar_user">
@@ -226,9 +228,15 @@ try{
 									</li>
 									<hr>
 								</ul>
-									<%}}else { %>
+								<%}} else if(request.getAttribute("checkout") != null){ %>
+									<div class="alert alert-success" role="alert">
+	 										Đơn hàng đã được xử lý, Xem lịch sử mua hàng để biết thêm chi tiết
+									</div>
+								
+								<% request.removeAttribute("checkout");
+								}else{ %>
 									<h2>Giỏ hàng trống !!!</h2>
-									<%} %>
+								<%} %>
 							</div>
 
 							<!-- Order Total -->

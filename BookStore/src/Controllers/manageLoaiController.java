@@ -13,11 +13,11 @@ import model.bean.loaibean;
 import model.bo.loaibo;
 
 
-@WebServlet("/adminController")
-public class adminController extends HttpServlet {
+@WebServlet("/manageLoaiController")
+public class manageLoaiController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public adminController() {
+    public manageLoaiController() {
         super();
     }
     loaibo lbo = new loaibo();
@@ -52,9 +52,9 @@ public class adminController extends HttpServlet {
 			
 			}
 			request.setAttribute("loai", lbo.getLoai());
-			RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("manageLoai.jsp");
 			rd.forward(request, response);
-			
+			response.getWriter().append("Served at: ").append(request.getContextPath());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

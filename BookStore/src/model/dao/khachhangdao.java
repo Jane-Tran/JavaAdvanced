@@ -24,4 +24,14 @@ public class khachhangdao {
 		khachhangbean khb= new khachhangbean(makh,tendn,pass,hoten);
 		return khb;
 	}
+	//Hàm lấy tên người dùng khi biết mã khách hàng
+	public String getName(String mkh) {
+		try {
+			con.KetNoi();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -23,19 +23,24 @@ public class checkoutController extends HttpServlet {
     giohangdao ghd = new giohangdao();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
 			HttpSession session = request.getSession();
 			String mkh = (String)session.getAttribute("makh");
 			giohangbo ghb = (giohangbo)session.getAttribute("gh");
 			if(mkh != null  && ghb != null) {
 				int check = ghd.checkout(mkh,ghb.ds);
-				if(check==2)
+				if(check==2) {
 					response.getWriter().append("Thêm thành công hóa đơn và chi tiết");
-				else
+					//remove session sau thi dat hang
+					session.removeAttribute("gh");
+					request.setAttribute("checkout", "1");
+				}else
 					response.getWriter().append("Thêm ko thành công");
-				System.out.println("hihi");
-//				RequestDispatcher rd = request.getRequestDispatcher("viewCartController");
-//				rd.forward(request, response);
-//				response.getWriter().append("Served at: ").append(request.getContextPath());
+				//System.out.println("hihi");
+				RequestDispatcher rd = request.getRequestDispatcher("viewCartController");
+				rd.forward(request, response);
+				response.getWriter().append("Served at: ").append(request.getContextPath());
 			}else {
 				RequestDispatcher rd = request.getRequestDispatcher("viewCartController");
 				rd.forward(request, response);

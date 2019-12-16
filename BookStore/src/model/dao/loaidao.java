@@ -9,7 +9,6 @@ public class loaidao {
 	ConnectSQL con = new ConnectSQL();
 	public boolean KtTrungMa(String maloai) throws Exception {
 		//Kiem tra xem co maloai nay trong bang loai hay ko?
-	
 			String sql = "SELECT maloai FROM loai WHERE maloai=?";
 			PreparedStatement cmd = con.cn.prepareStatement(sql);
 			cmd.setString(1, maloai);
@@ -62,7 +61,7 @@ public class loaidao {
 		return kt;
 	}
 
-	
+	//Chi co the sua ten
 	public int Sua(String maloai, String tenloaimoi) throws Exception {
 		con.KetNoi();
 		//Sua theo ten loai

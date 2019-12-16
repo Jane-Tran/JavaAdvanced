@@ -1,3 +1,5 @@
+<%@page import="model.bean.hoadonbean"%>
+<%@page import="model.bean.giohangbean"%>
 <%@page import="model.bo.giohangbo"%>
 <%@page import="model.bean.loaibean"%>
 <%@page import="java.util.ArrayList"%>
@@ -18,21 +20,22 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet"
         type="text/css">
     <link rel="stylesheet" type="text/css" href="css/shop_styles.css">
-    <link rel="stylesheet" type="text/css" href="css/shop_responsive.css">
+    <link rel="stylesheet" type="text/css" href="css/shop_reponsive.css">
+    <link rel="stylesheet" type="text/css" href="css/cart.css">
 </head>
 
 <body>
 <%
-giohangbo Counttype=(giohangbo)session.getAttribute("gh");
+giohangbo gh=(giohangbo)session.getAttribute("gh");
 int count=0;
 long total=0;
 try{
-	count=Counttype.Count();
-	total=Counttype.Sum();
+	count=gh.Count();
+	total=gh.Sum();
 }catch(Exception e){
 	
 }%>
- <div class="super_container">
+    <div class="super_container">
         <!-- Header -->
         <header class="header">
             <!-- Main Navigation -->
@@ -82,8 +85,8 @@ try{
                             <div class="header_search">
                                 <div class="header_search_content">
                                     <div class="header_search_form_container">
-                                        <form action="sachController" class="header_search_form clearfix">
-                                            <input type="search" required="required" class="header_search_input" name="seach"
+                                        <form action="#" class="header_search_form clearfix">
+                                            <input type="search" required="required" class="header_search_input"
                                                 placeholder="Search for products...">
                                             
                                             <button type="submit" class="header_search_button trans_300"
@@ -117,14 +120,12 @@ try{
                                 <div class="cart">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
-                                        	<a href="viewCartController">
-                                           	 <img src="images/cart.png" alt="">
-                                            </a>
+                                            <img src="images/cart.png" alt="">
                                             <div class="cart_count"><span><%=session.getAttribute("gh")==null?0:count%></span></div>
                                         </div>
                                         <div class="cart_content">
-                                            <div class="cart_text"><a href="viewCartController">Cart</a></div>
-                                            <div class="cart_price" style="font-size: 10px;"><%=session.getAttribute("gh")==null?0:total%> đ</div>
+                                            <div class="cart_text"><a href="#">Cart</a></div>
+                                            <div class="cart_price" style="font-size:10px"><%=session.getAttribute("gh")==null?0:total%> đ</div>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +144,7 @@ try{
                         <div class="col">
                             <div class="page_menu_content">
                                 <div class="page_menu_search">
-                                    <form action="#">
+                                    <form action="sachController">
                                         <input type="search" required="required" class="page_menu_search_input"
                                             placeholder="Search for products...">
                                     </form>
@@ -171,92 +172,62 @@ try{
             <div class="home_background parallax-window" data-parallax="scroll"
                 data-image-src="images/shop_background.jpg"><img alt="" src="images/shop_background.jpg"></div>
             <div class="home_overlay"></div>
-
         </div>
-
-        <!-- Shop -->
-        <div class="shop">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-
-                        <!-- Shop Sidebar -->
-                        <div class="shop_sidebar">
-                            <div class="sidebar_section">
-                                <div class="sidebar_title">Categories</div>
-                                <ul class="sidebar_categories">
-                                <%
-									if(request.getAttribute("ds")!=null)
-									{
-										ArrayList<loaibean> loai=new ArrayList<loaibean>();
-										loai=(ArrayList<loaibean>)request.getAttribute("loai");
-										int loaisize=loai.size();
-										for(int i=0;i<loaisize;i++){
-											loaibean listloai=loai.get(i);%>
-                                    		<li><a href="sachController?maloai=<%=listloai.getMaloai()%>"><%=listloai.getTenloai()%></a></li>
-								<%}}%>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-9">
-                        <!-- Product Item -->
-                        <div class="row">
-                        <%
-							ArrayList<sachbean> ds= new ArrayList<sachbean>();
-							ds= (ArrayList<sachbean>)request.getAttribute("ds");
-							int ss=ds.size();
-							for(int i=0;i<ss;i++){
-								sachbean s = ds.get(i);
-							%>
-	                        <div class="col-lg-3 product_item">
-	                            <div class="product_image d-flex flex-column align-items-center justify-content-center">
-	                                <img src="<%=s.getAnh() %>" alt="Anh khong ton tai">
-	                            </div>
-	                            <div class="row " style="align-items: center;justify-content: center;"		>
-	                            <div class="product_content">
-	                                <div class="product_name">
-	                                    <div><a href="#" tabindex="0"  style="white-space: normal; font-size:18px;"><%=s.getTensach() %></a></div>
-	                                </div>
-	                                <div class="product_price"><%=s.getGia() %> đ<span><%=s.getGia()+5000 %> đ</span></div>
-	                            </div>
-	                            <hr>
-	                            <a href="cartController?masach=<%=s.getMasach()%>&tensach=<%=s.getTensach() %>&anh=<%=s.getAnh() %>&gia=<%=s.getGia()%>">
-		                            <div  class="btn btn-primary btn-lg "><i class="fas fa-cart-plus"></i>
-		                            </div>
-	                           </a>
-	                            </div>
-	                        </div>
-						<%} %>
-                    </div>
-                        <!-- Shop Content -->
-
-
-                        <!-- Shop Page Navigation -->
-
-                        <div class="shop_page_nav d-flex flex-row">
-                            <div class="page_prev d-flex flex-column align-items-center justify-content-center"><i
-                                    class="fas fa-chevron-left"></i></div>
-                            <ul class="page_nav d-flex flex-row">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">...</a></li>
-                                <li><a href="#">21</a></li>
-                            </ul>
-                            <div class="page_next d-flex flex-column align-items-center justify-content-center"><i
-                                    class="fas fa-chevron-right"></i></div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+  	</div>
+        <!-- Cart -->
+	<div class="cart_section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="cart_container">
+						<div class="cart_title">History Buy</div>
+							<div class="row">							        
+						        <div class="col-md-12">
+						        	
+						        	<div class="table-responsive">
+									    <%	ArrayList<hoadonbean> dshd = new ArrayList<hoadonbean>();
+									    if(request.getAttribute("dshd")!= null && !request.getAttribute("dshd").equals(dshd) ){
+									    	dshd = (ArrayList<hoadonbean>)request.getAttribute("dshd");
+									    	%>
+									    
+						            <table id="mytable" class="table table-bordred table-striped">
+						            	<thead>
+						                    <th>
+						                    	<input type="checkbox" id="checkall" />
+						                    </th>
+						                    <th>#ID Hóa đơn</th>
+						                    <th>Ngày mua</th>
+						                    <th>Tình trạng</th>
+						                    <th>Edit</th>
+						                    <th>Delete</th>
+						                </thead>
+									    <tbody>
+									    	<%for(hoadonbean hoadon : dshd ){ %>
+										    <tr>
+											    <td>
+											    	<input type="checkbox" class="checkthis" />
+											    </td>
+											    <td>#<%=hoadon.getMahoadon() %></td>
+											    <td><%=hoadon.getNgaymua() %></td>
+											    <td><%=hoadon.isDamua()==true?"Đã thanh toán":"Đang chờ duyệt"%></td>
+											    <td><button type="button" class="btn btn-info"><i class="far fa-eye"></i></button></td>
+											    <td><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
+										    </tr>
+										    <%} %>
+									    </tbody>
+									</table>
+									 <%}else{ %>
+										<hr>
+									 	<h2> Bạn chưa có hóa đơn nào được lập </h2>
+									 <%} %>
+				            	</div>
+				        	</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
 
     <!-- Copyright -->
 
@@ -288,38 +259,11 @@ try{
             </div>
         </div>
     </div>
-    
-<!-- Modal HTML -->
-<div id="myModal" class="modal fade">
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-			<div class="modal-header">			
-				<h2 class="modal-title">Member Login</h2>	
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body">
-				<form action="loginController" method="post">
-					<div class="form-group">
-						<input type="text" class="form-control" name="username" placeholder="Username" required="required">		
-					</div>
-					<div class="form-group">
-						<input type="password" class="form-control" name="password" placeholder="Password" required="required">	
-					</div>        
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<a href="#">Forgot Password?</a>
-			</div>
-		</div>
-	</div>
-</div> 
+	
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- script src="js/shop_custom.js"></script-->
+    <script src="js/history.js"></script>
 </body>
 
 </html>

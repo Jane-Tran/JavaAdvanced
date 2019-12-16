@@ -1,7 +1,9 @@
 eclipse.preferences.version=1
+encoding//WebContent/manageLoai.jsp=UTF-8
 encoding//src/Controllers/checkoutController.java=UTF-8
 encoding//src/Controllers/sachController.java=UTF-8
 encoding//src/model/bo/giohangbo.java=UTF-8
+encoding//src/model/bo/hoadonbo.java=UTF-8
 encoding//src/model/bo/sachbo.java=UTF-8
 encoding//src/model/dao/ConnectSQL.java=UTF-8
 encoding//src/model/dao/giohangdao.java=UTF-8
