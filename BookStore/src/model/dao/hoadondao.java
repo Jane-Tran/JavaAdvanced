@@ -5,11 +5,33 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-
+import model.bean.giohangbean;
 import model.bean.hoadonbean;
 
 public class hoadondao {
 	ConnectSQL con = new ConnectSQL();
+	public ArrayList<giohangbean> getChiTietHoaDon(String mahd){
+		ArrayList<giohangbean> dsh = new ArrayList<giohangbean>();
+		try {
+			con.KetNoi();
+			String sql = "SELECT * FROM View_ChiTiet WHERE MaHoaDon=?";
+			PreparedStatement cmd = con.cn.prepareStatement(sql);
+			cmd.setString(1, mahd);
+			ResultSet rs = cmd.executeQuery();
+			while(rs.next()) {
+				String tensach = rs.getString("tensach");
+				String anh = rs.getString("anh");
+				long gia = rs.getLong("gia");
+				long sl = rs.getLong("SoLuongMua");
+				giohangbean ct =new giohangbean(tensach, anh, gia, sl) ;
+				dsh.add(ct);
+			}
+			con.cn.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dsh;
+	}
 	public ArrayList<hoadonbean> getHoaDon(){
 		ArrayList<hoadonbean> dsh = new ArrayList<hoadonbean>();
 		try {

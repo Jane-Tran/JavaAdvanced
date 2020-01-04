@@ -12,6 +12,15 @@ public class giohangbean {
 		super();
 	}
 
+	public giohangbean(String tensach, String anh, long gia, long soluong) {
+		super();
+		this.tensach = tensach;
+		this.anh = anh;
+		this.gia = gia;
+		this.soluong = soluong;
+		this.thanhtien = gia*soluong;
+	}
+
 	public giohangbean(String masach, String tensach, String anh, long gia, long soluong) {
 		super();
 		this.masach = masach;

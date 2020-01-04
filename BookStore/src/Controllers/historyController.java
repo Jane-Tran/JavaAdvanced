@@ -28,6 +28,7 @@ public class historyController extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String mkh = (String)session.getAttribute("makh");
+		String viewid = request.getParameter("viewid");
 		if(mkh != null){
 			if(hdb.getHoaDon(mkh)!=null)
 				request.setAttribute("dshd", hdb.getHoaDon(mkh));

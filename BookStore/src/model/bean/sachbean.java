@@ -16,6 +16,7 @@ public class sachbean {
 	public sachbean() {
 		super();
 	}
+	
 	public sachbean(String masach, String tensach, String tacgia, long gia, String anh, Date ngaynhap, String maloai) {
 		super();
 		this.masach = masach;

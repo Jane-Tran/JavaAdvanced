@@ -183,7 +183,7 @@
 						<br>
 						<% sachbean sc = (sachbean)request.getAttribute("chon"); %>
 						<div class ="card card-body">
-						<form action="manageSachController" method="get" id="carform">
+						<form action="manageSachController" method="get" id="carform" enctype="multipart/form-data">
 						  <div class="form-row">
 						  	<div class="col-3">
 							    <label>Mã sách</label>

@@ -1,3 +1,4 @@
+<%@page import="model.dao.hoadondao"%>
 <%@page import="model.bean.hoadonbean"%>
 <%@page import="model.bean.giohangbean"%>
 <%@page import="model.bo.giohangbo"%>
@@ -29,6 +30,7 @@
 giohangbo gh=(giohangbo)session.getAttribute("gh");
 int count=0;
 long total=0;
+int viewid=0;
 try{
 	count=gh.Count();
 	total=gh.Sum();
@@ -210,7 +212,7 @@ try{
 											    <td>#<%=hoadon.getMahoadon() %></td>
 											    <td><%=hoadon.getNgaymua() %></td>
 											    <td><%=hoadon.isDamua()==true?"Đã thanh toán":"Đang chờ duyệt"%></td>
-											    <td><button type="button" class="btn btn-info"><i class="far fa-eye"></i></button></td>
+											    <td><button onclick="<%=viewid=hoadon.getMahoadon()%>" type="button" class="btn btn-info" data-toggle="modal" data-target="#classModal"><i class="far fa-eye"></i></button></td>
 											    <td><button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></td>
 										    </tr>
 										    <%} %>
@@ -235,7 +237,6 @@ try{
         <div class="container">
             <div class="row">
                 <div class="col">
-
                     <div
                         class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
                         <div class="copyright_content">
@@ -259,11 +260,74 @@ try{
             </div>
         </div>
     </div>
+	<!--Modal Table -->
+	<div id="classModal" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="classInfo" aria-hidden="true">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+	          ×
+	        </button>
+	        <h4 class="modal-title" id="classModalLabel">
+	              Class Info
+	         </h4>
+	      </div>
+	      <div class="modal-body" style="overflow-x: auto;">
+	        <table id="classTable" class="table table-bordered">
+	          <thead>
+	          </thead>
+	          <tbody>
+	            <tr>
+	              <th></th>
+	              <th>Name</th>
+	              <th>Quantity</th>
+	              <th>Price</th>
+	              <th>Total</th>
+	            </tr>
+	            <%if(viewid !=0){
+	            	hoadondao hdd = new hoadondao();
+	            	ArrayList<giohangbean> dsg = new ArrayList<giohangbean>();
+	            	String id = String.valueOf(viewid);
+	            	dsg= hdd.getChiTietHoaDon(id);
+	            	for(giohangbean ct:dsg){
+	           	%>
+	            <tr>
+	              <td><img alt="" src="<%=ct.getAnh()%>" width="80px" height="100px"></td>
+	              <td><%=ct.getTensach() %></td>
+	              <td><%=ct.getSoluong() %></td>
+	              <td><%=ct.getGia()%></td>
+	              <td><%=ct.getThanhtien() %></td>
+	            </tr>
+	            <%}} %>
+	          </tbody>
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal">
+	          Close
+	        </button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
 	
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="js/history.js"></script>
+    <script type="text/javascript">
+    function view(id) {
+    	$.ajax(
+	    {
+    		url : "historyController",
+    		type : "post", 
+	    });
+    	
+    }
+    	
+    
+    </script>
 </body>
 
 </html>
