@@ -17,6 +17,6 @@
         document.getElementById("eDonVi").value = dv;
     }
     function DeleteDNUH(manhan){
-        document.getElementById("delMaDotNhanUngHo").value = manhan;
+        document.getElementById("xMaDotNhanUngHo").value = manhan;
     }
 </script>

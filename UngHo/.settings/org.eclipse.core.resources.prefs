@@ -2,3 +2,5 @@ eclipse.preferences.version=1
 encoding//WebContent/header.jsp=UTF-8
 encoding//WebContent/index.jsp=UTF-8
 encoding//WebContent/scripts.jsp=UTF-8
+encoding//src/model/dao/DotUngHoDAO.java=UTF-8
+encoding//src/model/dao/NhanUngHoDAO.java=UTF-8

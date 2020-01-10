@@ -8,23 +8,24 @@ import model.bean.DonViUngHoBEAN;
 
 public class DonViUngHoDAO {
 	ConnectDb con = new ConnectDb();
-	public ArrayList<DonViUngHoBEAN> getDVUH(){
-		ArrayList<DonViUngHoBEAN> ds =  new ArrayList<DonViUngHoBEAN>();
+
+	public ArrayList<DonViUngHoBEAN> getDVUH() {
+		ArrayList<DonViUngHoBEAN> ds = new ArrayList<DonViUngHoBEAN>();
 		try {
 			con.KetNoi();
 			String sql = "SELECT MaDVUH, HoTenNguoiDaiDien FROM DON_VI_UNG_HO";
 			PreparedStatement cmd = con.cn.prepareStatement(sql);
 			ResultSet rs = cmd.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				String ma = rs.getString("MaDVUH");
 				String ten = rs.getString("HoTenNguoiDaiDien");
-				DonViUngHoBEAN dv  = new DonViUngHoBEAN(ma, ten);
+				DonViUngHoBEAN dv = new DonViUngHoBEAN(ma, ten);
 				ds.add(dv);
 			}
 			con.cn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ds; 
+		return ds;
 	}
 }

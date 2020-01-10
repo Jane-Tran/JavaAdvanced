@@ -8,6 +8,6 @@ public class ConnectDb {
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		String url = "jdbc:sqlserver://localhost:1433;databaseName=UngHoLuLut;user=sa;password=123";
 		cn = DriverManager.getConnection(url);
-		System.out.println("Da ket noi ! ! !");
+		System.out.println("kt!");
 	}
 }

@@ -1,3 +1,4 @@
+<%@page import="model.bean.DotUngHoBEAN"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="model.bean.DonViUngHoBEAN"%>
 <%@page import="java.util.ArrayList"%>
@@ -15,8 +16,8 @@
 		<div class="col-lg-2">
 			<div class="list-group" id="list-tab" role="tablist">
 				<a href="#" class="list-group-item list-group-item-action active" role="tab"><b>Đợt ủng hộ</b></a>
-				<a href="#" class="list-group-item list-group-item-action" role="tab"><b>Thống kê tiền mặt của mỗi hộ dân</b></a>
-				<a href="#" class="list-group-item list-group-item-action" role="tab"><b>Đợt nhận ủng hộ</b></a>
+				<a href="ThongKeController" class="list-group-item list-group-item-action" role="tab"><b>Thống kê tiền mặt của mỗi hộ dân</b></a>
+				<a href="NhanUngHoController" class="list-group-item list-group-item-action" role="tab"><b>Đợt nhận ủng hộ</b></a>
 			</div>
 		</div>
 		<div class="table-wrapper col-lg-9">
@@ -34,10 +35,25 @@
 				</div>
 				<div class="card-body" style="font-size: 18px">
 					<form action="DotUngHoController" method="POST">
+					<%
+					String kq = (String)request.getAttribute("kq");
+					if(kq=="them"){ %>
+						<div class="alert alert-success alert-dismissible">
+						  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+						  <strong>Thêm thành công!</strong> một đợt ủng hộ mới.
+						</div>
+						<%} %>
 						<div class="form-row">
-						<div class="form-group col-md-4">
+							<div class="form-group col-md-4">
 								<label for="inputCity">Mã đợt ủng hộ</label>
-								<input type="text" class="form-control" name="madotungho" id="inputCity" required>
+								<input type="text" class="form-control" name="madotungho" id="inputCity" required><br>
+								<%
+									if(kq=="loi"){ %>
+									<div class="alert alert-danger alert-dismissible">
+									    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									    Mã đã tồn tại !
+								  	</div>
+								  	<%} %>
 							</div>
 							<div class="form-group col-md-4">
 								<label for="inputState">Người đại diện Ủng hộ</label>
@@ -95,6 +111,10 @@
 					</tr>
 				</thead>
 				<tbody>
+						<% if(request.getAttribute("duh")!=null){
+							ArrayList<DotUngHoBEAN> list = new ArrayList<DotUngHoBEAN>();
+							list = (ArrayList<DotUngHoBEAN>)request.getAttribute("duh");
+							for(DotUngHoBEAN dot : list){%>
 						<tr>
 							<td>
 								<span class="custom-checkbox">
@@ -102,20 +122,26 @@
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td><%=dot.getHoTenNguoiDaiDien() %></td>
+							<td><%=dot.getNgayUngHo() %></td>
+							<td><%=dot.getHinhThucUngHo() %></td>
+							<td><%=dot.getSoLuongUngHo() %></td>
+							<td><%=dot.getDonViTinh() %></td>
 							<td>
 								<a href="#editEmployeeModal" class="edit"
-									 
+									 onclick="EditDUH('<%=dot.getMaDotUngHo() %>',
+									 '<%=dot.getMaDVUH() %>',
+									 '<%=dot.getNgayUngHo() %>',
+									 '<%=dot.getHinhThucUngHo() %>', 
+									 '<%=dot.getSoLuongUngHo()%>',
+									 '<%=dot.getDonViTinh() %>')"
 									data-toggle="modal">
 									<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 								</a>
 								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
+							<%}} %>
 					<?php } ?>
 				</tbody>
 			</table>
@@ -129,7 +155,7 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form action="Controllers/UngHoController.php" method="POST">
+			<form action="SuaDUHController" method="POST">
 				<div class="modal-header">
 					<h4 class="modal-title">Chỉnh sửa đợt Ủng hộ</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -144,13 +170,16 @@
 					</div>
 					<div class="form-row">
 						<div class="form-group col-md-6">
-							<label for="eHoTenNDD">Người đại diện Ủng hộ</label>
-								<select id="eHoTenNDD"  name ="nguoiungho"class="form-control " required>
-									<!-- <option selected>Chọn người ủng hộ ...</option> -->
-									<?php foreach($listMaDVUH as $key => $value){ ?>
-									<option value="<?php echo $value ?>"> <?php echo implode("",DonViUngHo::getNameByMa($value)); ?></option>
-									<?php } ?>
-								</select>
+							<label for="inputState">Người đại diện Ủng hộ</label>
+									<select id="eHoTenNDD"   name ="nguoiungho"class="form-control " required>
+										<option value="" selected>Chọn người ủng hộ ...</option>
+										<%if(request.getAttribute("dv")!=null){
+											ArrayList<DonViUngHoBEAN> dv = new ArrayList<DonViUngHoBEAN>();
+											dv = (ArrayList<DonViUngHoBEAN>)request.getAttribute("dv");
+											for(DonViUngHoBEAN d:dv){%>
+										<option value="<%=d.getMaDVUH()%>"> <%=d.getHoTenDVUH() %> </option>
+										<%}} %>
+									</select>
 						</div>
 						<div class="form-group col-md-6">
 							<label for="eNgayUngHo">Ngày ủng hộ</label>

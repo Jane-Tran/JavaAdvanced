@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.sql.DriverManager"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
-<fullyQualifiedTypeName name="model.dao.sachdao"/>
 <fullyQualifiedTypeName name="model.dao.loaidao"/>
 <fullyQualifiedTypeName name="tranVanQuangHuy.dao.ConnectSQL"/>
 <fullyQualifiedTypeName name="tranVanQuangHuy.dao.hangdao"/>
@@ -18,13 +15,11 @@
 <fullyQualifiedTypeName name="com.sun.org.apache.xpath.internal.Arg"/>
 <fullyQualifiedTypeName name="model.dao.giohangdao"/>
 <fullyQualifiedTypeName name="model.bo.giohangbo"/>
-<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="javax.security.auth.message.callback.PrivateKeyCallback.Request"/>
 <fullyQualifiedTypeName name="model.dao.hoadondao"/>
 <fullyQualifiedTypeName name="model.bean.hoadonbean"/>
 <fullyQualifiedTypeName name="model.bo.hoadonbo"/>
 <fullyQualifiedTypeName name="model.bo.sachbo"/>
-<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="model.bean.sachbean"/>
 <fullyQualifiedTypeName name="model.bo.loaibo"/>
 <fullyQualifiedTypeName name="org.apache.commons.fileupload.disk.DiskFileItemFactory"/>
@@ -35,17 +30,34 @@
 <fullyQualifiedTypeName name="org.apache.commons.fileupload.FileItem"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="model.bean.giohangbean"/>
-<fullyQualifiedTypeName name="java.sql.Date"/>
-<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
 <fullyQualifiedTypeName name="com.sun.corba.se.pept.transport.Connection"/>
 <fullyQualifiedTypeName name="java.sql.Connection"/>
 <fullyQualifiedTypeName name="model.dao.ConnectSQL"/>
 <fullyQualifiedTypeName name="model.dao.DonViUngHoDAO"/>
 <fullyQualifiedTypeName name="model.bo.DonViUngHoBO"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="model.bean.DonViUngHoBEAN"/>
+<fullyQualifiedTypeName name="model.dao.DotUngHoDAO"/>
+<fullyQualifiedTypeName name="model.bo.DotUngHoBO"/>
+<fullyQualifiedTypeName name="model.bean.DotUngHoBEAN"/>
+<fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
+<fullyQualifiedTypeName name="java.sql.Date"/>
+<fullyQualifiedTypeName name="model.dao.NhanUngHoDAO"/>
+<fullyQualifiedTypeName name="model.bo.NhanUngHoBO"/>
+<fullyQualifiedTypeName name="model.bean.NhanUngHoBEAN"/>
 <fullyQualifiedTypeName name="model.dao.ConnectDb"/>
-<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="model.dao.ThongKeDAO"/>
+<fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="model.bo.ThongKeBO"/>
+<fullyQualifiedTypeName name="model.bean.ThongKeBEAN"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="dao.HoatDongDAO"/>
+<fullyQualifiedTypeName name="bo.HoatDongBO"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="dao.ConnectDB"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+<fullyQualifiedTypeName name="bean.HoatDongBEAN"/>
 </qualifiedTypeNameHistroy>

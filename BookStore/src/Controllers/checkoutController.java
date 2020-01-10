@@ -45,7 +45,6 @@ public class checkoutController extends HttpServlet {
 				RequestDispatcher rd = request.getRequestDispatcher("viewCartController");
 				rd.forward(request, response);
 				response.getWriter().append("Served at: ").append(request.getContextPath());
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
