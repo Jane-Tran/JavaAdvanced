@@ -48,12 +48,13 @@ public class BenhAnNam extends HttpServlet {
 		if(session.getAttribute("taikhoan")!=null) {
 			request.setAttribute("taikhoan", session.getAttribute("taikhoan"));
 			try {
-				request.setAttribute("dsBenhAnNam", ban.getBenhAnNam());
+				
 				request.setAttribute("currentSelectNam", -1);
 				int nam = Integer.parseInt(request.getParameter("txt_nam"));
 				request.setAttribute("currentSelectNam", nam);
+				request.setAttribute("dsBenhAnNam", ban.listBenhAnNam(nam));
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("BenhAnNam.jsp");
 			rd.forward(request, response);

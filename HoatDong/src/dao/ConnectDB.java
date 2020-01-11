@@ -2,6 +2,8 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  * ConnectDB
@@ -39,5 +41,15 @@ public class ConnectDB {
 		cn = DriverManager.getConnection(DB_URL);
 		System.out.println("kt!");
 	}
-	
+	public ResultSet getBang(String tb) {
+		try {
+			String sql="select * from "+tb;
+			PreparedStatement statement=cn.prepareStatement(sql);
+			return statement.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 }

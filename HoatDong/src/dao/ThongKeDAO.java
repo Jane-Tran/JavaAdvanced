@@ -18,9 +18,9 @@ public class ThongKeDAO {
 		ArrayList<ThongKeBEAN> ds = new ArrayList<ThongKeBEAN>();
 		try {
 			con.KetNoi();
-			String sql = "SELECT * FROM VIEW_DiemTrungBinh";
-			PreparedStatement cmd = con.cn.prepareStatement(sql);
-			ResultSet rs = cmd.executeQuery();
+//			String sql = "SELECT * FROM VIEW_DiemTrungBinh";
+//			PreparedStatement cmd = con.cn.prepareStatement(sql);
+			ResultSet rs = con.getBang("VIEW_DiemTrungBinh"); //cmd.executeQuery();
 			while (rs.next()) {
 				String maTv = rs.getString("MaTV");
 				String hoTen = rs.getString("HoTen");

@@ -66,10 +66,10 @@
 										<option value="<%=d.getMaDVUH()%>"> <%=d.getHoTenDVUH() %> </option>
 										<%}} %>
 									</select>
-							</div>	
+							</div>		
 							<div class="form-group col-md-4">
 								<label for="inputNgayUngHo">Ngày ủng hộ</label>
-								<input type="date" class="form-control" name="ngayungho" id="inputNgayUngHo" required>
+								<input type="date" class="form-control" data-date-format="DD MMMM YYYY" name="ngayungho" id="inputNgayUngHo" required>
 							</div>
 						</div>
 						<div class="form-row">

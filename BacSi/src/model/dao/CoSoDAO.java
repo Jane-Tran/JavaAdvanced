@@ -28,7 +28,7 @@ public class CoSoDAO {
 	public void ketNoi() throws Exception{
 		Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		System.out.println("Da xac dinh HQTCSDL");
-		cn = DriverManager.getConnection("jdbc:sqlserver://NHAHUYEN-PC\\SQLEXPRESS:1433;databaseName=QuanLyPhongKhamBenh;user=sa; password=123");
+		cn = DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=BacSi;user=sa; password=123");
 		System.out.println("Da ket noi");
 	}
 	

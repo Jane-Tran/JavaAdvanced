@@ -25,7 +25,6 @@
 			</h3>
 
 			<div class="row">
-				<div class="col-sm-2"></div>
 				<div class="col-sm-6">
 					<form class="form-inline my-2 my-lg-0" action="" method="get">
 						<input class="form-control mr-sm-2" type="search"
@@ -35,8 +34,8 @@
 						</button>
 					</form>
 				</div>
-				<div class="col-sm-2">
-					<button type="button" style="margin-right: 8px; float: right;"
+				<div class="col-sm-6">
+					<button type="button" style="margin-right: 0px; float: right;"
 						class="btn btn-outline-primary"
 						onclick="document.getElementById('id01').style.display='block'">
 						<i class="fas fa-plus-circle"></i> Thêm bệnh án
@@ -67,7 +66,7 @@
 											&& request.getParameter("doctorID").equals(lb.getDoctorID())) {
 						%>
 						<a href="BacSy?doctorID=<%=lb.getDoctorID()%>"
-							class="list-group-item active" style="color: black;"><%=lb.getDoctorID()%></a>
+							class="list-group-item active" style="color: black;"><%=lb.getDoctorName()%></a>
 						<%
 							} else {
 						%>
@@ -81,12 +80,6 @@
 					</div>
 				</div>
 				<div class="col-sm-8">
-					<%
-						ArrayList<BenhAnBEAN> dsBenhAn = null;
-						if (request.getAttribute("dsBenhAn") != null) {
-							dsBenhAn = (ArrayList<BenhAnBEAN>) request.getAttribute("dsBenhAn");
-						}
-					%>
 					<%
 						ArrayList<BenhAnBEAN> dsBenhAnTheoBacSy = null;
 						if (request.getAttribute("dsBenhAnTheoBacSy") != null) {
@@ -127,7 +120,8 @@
 								<td><%=ba.getResult()%></td>
 								<td><%=ba.getTreatments()%></td>
 								<td><button data-toggle="modal"
-										data-target="#myModal<%=ba.getExamineDate()%>" type="button"
+										data-target="#myModal" type="button"
+										onclick="xoaBenhAn('<%=ba.getPatientID() %>','<%=ba.getDoctorID() %>','<%=ba.getExamineDate()%>')"
 										class="btn btn-outline-danger">
 										<i class="fas fa-minus-circle"></i> Xóa
 									</button></td>
@@ -145,36 +139,33 @@
 		</div>
 	</div>
 </div>
-<%
-	if (dsBenhAn != null) {
-		for (BenhAnBEAN ls : dsBenhAn) {
-%>
-<div class="modal fade" id="myModal<%=ls.getExamineDate()%>"
+
+<div class="modal fade" id="myModal"
 	role="dialog" style="padding-right: 100px;">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content" style="width: 150%;">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h3 class="modal-title">
-					<b>Xóa Lịch sử lưu trú</b>
+					<b>Xóa bệnh án</b>
 				</h3>
 			</div>
 			<div class="modal-body">
-				<p>Bạn có muốn XÓA Lịch sử lưu trú này?</p>
+				<p>Bạn có muốn xóa bệnh án này không ?</p>
 			</div>
 			<div class="modal-footer">
+			<form action="BacSy" method="post">
 				<button type="button" class="btn btn-success" data-dismiss="modal">Không</button>
-				<a
-					href="BacSy?xoa=1&patientID=<%=ls.getPatientID()%>&doctorID=<%=ls.getDoctorID()%>&examineDate=<%=ls.getExamineDate()%>"><button
-						type="button" class="btn btn-danger">Có</button></a>
+				<input type="hidden" id="xPatientID" name = "xPatientID">
+				<input type="hidden" id="xDoctorID" name = "xDoctorID">
+				<input type="hidden" id="xExamineDate" name = "xExamineDate">
+				<input type="submit" class="btn btn-danger" value="Có" name ="xoaBenhAn">
+			</form>
 			</div>
 		</div>
 	</div>
 </div>
-<%
-	}
-	}
-%>
+
 
 
 

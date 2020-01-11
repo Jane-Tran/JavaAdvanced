@@ -43,8 +43,10 @@
 <link href="https://fonts.googleapis.com/css?family=Fira+Sans" rel="stylesheet">
 <style type="text/css">
 body {
-	background-color: #f1f2f4;
-	font-family: 'Fira Sans', sans-serif;
+	color: #566787;
+    background: #f5f5f5;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 14px;
 }
 
 .sapxep_dhm {
@@ -219,14 +221,15 @@ to {
 						<li><a href="">Thông tin cá nhân</a></li>
 						<li><a href="">Đổi mật khẩu</a></li>
 						<li><a href="DangNhap?logout=true">Đăng xuất</a></li>
-					</ul></li>
+					</ul>
+				</li>
 				<li><a href="BenhNhan">Quản lý bệnh nhân</a></li>
 				<li><a href="BacSy">Quản lý bệnh án</a></li>
 				<li><a href="BenhAnNam">Quản lý bệnh án theo năm</a></li>
 			</ul>
 
 			<ul class="list-unstyled CTAs">
-				<li><a class="article">Nguyễn Trần Nhã Huyền</a></li>
+				<li><a class="article">Huy Tran</a></li>
 			</ul>
 		</nav>
 

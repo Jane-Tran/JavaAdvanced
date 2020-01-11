@@ -22,6 +22,11 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
 <script type="text/javascript">
+	function xoaBenhAn(PatientID, DoctorID, ExamineDate) {
+		document.getElementById("xPatientID").value = PatientID;
+		document.getElementById("xDoctorID").value =DoctorID;
+		document.getElementById("xExamineDate").value =ExamineDate;
+	}
 	$(document).ready(function() {
 		$("#sidebar").mCustomScrollbar({
 			theme : "minimal"
@@ -38,7 +43,9 @@
 			$('.collapse.in').toggleClass('in');
 			$('a[aria-expanded=true]').attr('aria-expanded', 'false');
 		});
+		
 	});
+	
 </script>
 
 </body>

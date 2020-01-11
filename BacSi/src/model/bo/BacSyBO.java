@@ -1,7 +1,6 @@
 package model.bo;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import model.bean.BacSyBEAN;
 import model.dao.BacSyDAO;

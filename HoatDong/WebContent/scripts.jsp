@@ -22,3 +22,6 @@
         document.getElementById("DeleteMaHD").value = ma;
     }
 </script>
+
+</body>
+</html>    

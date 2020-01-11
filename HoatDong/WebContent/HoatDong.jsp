@@ -324,4 +324,3 @@
 	</div>
 </div>
 <jsp:include page="scripts.jsp"></jsp:include>
-<jsp:include page="footer.jsp"></jsp:include>

@@ -27,5 +27,7 @@ public class BenhNhanBO {
 	public int themBenhNhan(String patientID, String patientName, String sex, Date birthDay, String address,String phoneNumber) throws Exception {
 		return bn.themBenhNhan(patientID, patientName, sex, birthDay, address, phoneNumber);
 	}
-
+	public boolean kiemTraTonTaiIDBenhNhan(String patientId) {
+		return bn.kiemTraTonTaiIDBenhNhan(patientId);
+	}
 }

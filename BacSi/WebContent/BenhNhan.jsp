@@ -20,19 +20,6 @@
 			<h3 style="text-align: center; color: #0A0A2A; margin-bottom: 30px;">
 				<strong>THÔNG TIN BỆNH NHÂN</strong>
 			</h3>
-			<%
-			String noti = "0";
-			if (request.getAttribute("noti") != null) {
-				noti = (String) request.getAttribute("noti");
-			}
-			if (noti.equals("1")) {
-		%><div class="alert alert-success" role="alert">Đã thêm bệnh nhân thành công</div>
-		<%
-			}
-			if (noti.equals("2")) {
-		%>
-		<div class="alert alert-warning" role="alert">Ngày sinh không hợp lệ</div>
-		<%} %>
 			<div class="row">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-6">
@@ -54,6 +41,12 @@
 
 				</div>
 			</div>
+			<br>
+				<% if(request.getAttribute("error") != null){ %>
+				<div class="alert alert-danger" role="alert">
+				 <%= request.getAttribute("error") %>
+				</div>
+			<%} %>
 			<div class="row sapxep_dhm1">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-7"></div>

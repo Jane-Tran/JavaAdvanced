@@ -2,6 +2,7 @@ package model.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,7 +23,8 @@ import model.bean.BenhAnBEAN;
 public class BenhAnDAO {
 	
 	/**
-	 * Lấy dữ liệu từ bảng Examine
+	 * Lay tat ca benh an
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
@@ -40,7 +42,8 @@ public class BenhAnDAO {
 	}
 	
 	/**
-	 * Lấy dữ bệnh án theo bác sỹ
+	 * Lay benh an theo Bac si
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
@@ -59,19 +62,35 @@ public class BenhAnDAO {
 		cs.cn.close();
 		return ds;
 	}
-
-	public boolean xoaBenhAn(String patientID, String doctorID, Date examineDate) throws Exception{
+	
+	/**
+	 * xoa benh an
+	 * 
+	 * @param patientID
+	 * @param doctorID
+	 * @param examineDate
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean xoaBenhAn(String patientID, String doctorID, String examineDate) {
 		CoSoDAO cs=new CoSoDAO();
-		cs.ketNoi();
-		String sql="delete from Examine where PatientID = ? and DoctorID = ? and ExamineDate =?";
-		PreparedStatement cmd=cs.cn.prepareStatement(sql);
-		cmd.setString(1, patientID);
-		cmd.setString(2, doctorID);
-		cmd.setDate(3, new java.sql.Date(examineDate.getTime()));
-		cmd.executeUpdate();
-		int i=cmd.executeUpdate();
-		if(i>0)
-			return true;
+		try {
+			cs.ketNoi();
+			SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+			String sql="delete from Examine where PatientID = ? and DoctorID = ? and ExamineDate = ?";
+			PreparedStatement cmd=cs.cn.prepareStatement(sql);
+			cmd.setString(1, patientID);
+			cmd.setString(2, doctorID);
+			cmd.setString(3,examineDate);
+			int i=cmd.executeUpdate();
+			cs.cn.close();
+			
+			System.out.println(i);
+			if(i>=0)
+				return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 }

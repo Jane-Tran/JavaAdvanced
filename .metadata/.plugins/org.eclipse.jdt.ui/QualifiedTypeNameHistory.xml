@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="model.dao.loaidao"/>
-<fullyQualifiedTypeName name="tranVanQuangHuy.dao.ConnectSQL"/>
-<fullyQualifiedTypeName name="tranVanQuangHuy.dao.hangdao"/>
-<fullyQualifiedTypeName name="tranVanQuangHuy.bo.hangbo"/>
-<fullyQualifiedTypeName name="tranVanQuangHuy.bean.hangbean"/>
 <fullyQualifiedTypeName name="model.bean.loaibean"/>
 <fullyQualifiedTypeName name="model.dao.khachhangdao"/>
 <fullyQualifiedTypeName name="model.bo.khachhangbo"/>
@@ -45,7 +40,6 @@
 <fullyQualifiedTypeName name="model.bo.NhanUngHoBO"/>
 <fullyQualifiedTypeName name="model.bean.NhanUngHoBEAN"/>
 <fullyQualifiedTypeName name="model.dao.ConnectDb"/>
-<fullyQualifiedTypeName name="java.sql.ResultSet"/>
 <fullyQualifiedTypeName name="model.dao.ThongKeDAO"/>
 <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
@@ -54,10 +48,16 @@
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="dao.HoatDongDAO"/>
 <fullyQualifiedTypeName name="bo.HoatDongBO"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="dao.ConnectDB"/>
-<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
 <fullyQualifiedTypeName name="bean.HoatDongBEAN"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="dao.ThongKeDAO"/>
+<fullyQualifiedTypeName name="bo.ThongKeBO"/>
+<fullyQualifiedTypeName name="bean.ThongKeBEAN"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="model.bean.BenhAnBEAN"/>
+<fullyQualifiedTypeName name="model.dao.CoSoDAO"/>
+<fullyQualifiedTypeName name="dao.ConnectDB"/>
 </qualifiedTypeNameHistroy>

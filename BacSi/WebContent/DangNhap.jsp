@@ -109,7 +109,7 @@ html, body {
 				<strong>ĐĂNG NHẬP</strong>
 			</h2>
 				<label for="inputEmail" class="sr-only">Email</label> 
-				<input type="email" id="inputEmail" name="adname" class="form-control" placeholder="Email" required autofocus> 
+				<input type="text" id="inputEmail" name="adname" class="form-control" placeholder="Email" required autofocus> 
 				<label for="inputPassword" class="sr-only">Mật khẩu</label> 
 				<input type="password" id="inputPassword" name="pass" class="form-control" placeholder="Mật khẩu" required>
 			<div class="checkbox mb-3">

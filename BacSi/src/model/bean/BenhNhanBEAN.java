@@ -21,42 +21,55 @@ public class BenhNhanBEAN {
 	private Date birthDay;
 	private String address;
 	private String phoneNumber;
+
 	public String getPatientID() {
 		return patientID;
 	}
+
 	public void setPatientID(String patientID) {
 		this.patientID = patientID;
 	}
+
 	public String getPatientName() {
 		return patientName;
 	}
+
 	public void setPatientName(String patientName) {
 		this.patientName = patientName;
 	}
+
 	public String getSex() {
 		return sex;
 	}
+
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
+
 	public Date getBirthDay() {
 		return birthDay;
 	}
+
 	public void setBirthDay(Date birthDay) {
 		this.birthDay = birthDay;
 	}
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
 	public BenhNhanBEAN(String patientID, String patientName, String sex, Date birthDay, String address,
 			String phoneNumber) {
 		super();
@@ -67,9 +80,10 @@ public class BenhNhanBEAN {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 	}
+
 	public BenhNhanBEAN() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }

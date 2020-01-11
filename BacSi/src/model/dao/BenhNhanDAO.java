@@ -22,14 +22,14 @@ import model.bean.BenhNhanBEAN;
 public class BenhNhanDAO {
 	
 	/**
-	 * Thêm dữ liệu vào bảng Patient
+	 * Them moi benh nhan vao bang Patient
 	 * @return
 	 * @throws Exception
 	 */
 	public int themBenhNhan(String patientID, String patientName, String sex, Date birthDay, String address,String phoneNumber) throws Exception {
 			CoSoDAO cs=new CoSoDAO();
 			cs.ketNoi();
-			String sql="insert into Patient (PatientID,PatientName,Sex,BirthDay,Address,PhoneNumber) values (?,?,?,?,?,?)";
+			String sql="insert into Patient(PatientID,PatientName,Sex,BirthDay,Address,PhoneNumber) values (?,?,?,?,?,?)";
 			PreparedStatement statement=cs.cn.prepareStatement(sql);
 			statement.setString(1, patientID);
 			statement.setString(2, patientName);
@@ -58,5 +58,28 @@ public class BenhNhanDAO {
 		rs.close();
 		cs.cn.close();
 		return ds;
+	}
+	
+	/**
+	 * Kiem tra ma da ton tai hay chua
+	 * @param patientId
+	 * @return
+	 */
+	public boolean kiemTraTonTaiIDBenhNhan(String patientId) {
+		try {
+			CoSoDAO dc = new CoSoDAO();
+			dc.ketNoi();
+			String sqlTim ="select *from Patient where PatientId = ?";
+			PreparedStatement cmd = dc.cn.prepareStatement(sqlTim);
+			cmd.setString(1, patientId);
+			ResultSet rs = cmd.executeQuery();
+			if(rs.next() == true) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

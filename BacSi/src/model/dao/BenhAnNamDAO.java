@@ -48,7 +48,9 @@ public class BenhAnNamDAO {
 		ArrayList<BenhAnNamBEAN> list = new ArrayList<BenhAnNamBEAN>();
 		CoSoDAO cs=new CoSoDAO();
 		cs.ketNoi();
-		String query = "SELECT * FROM Examine where YEAR(ExamineDate) = ?";
+		String query = "SELECT p.PatientID,p.PatientName,d.DoctorID,d.DoctorName,e.ExamineDate,e.Result,e.Treatments \r\n" + 
+				"FROM Examine AS e, Doctor AS d, Patient AS p \r\n" + 
+				"where p.PatientID = e.PatientID AND e.DoctorID=d.DoctorID AND YEAR(ExamineDate) = ?";
 		PreparedStatement stmt = cs.cn.prepareStatement(query);
 		stmt.setInt(1, nam);
 		ResultSet rs = stmt.executeQuery();

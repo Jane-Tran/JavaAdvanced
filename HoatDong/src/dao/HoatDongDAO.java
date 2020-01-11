@@ -128,7 +128,7 @@ public class HoatDongDAO {
 			PreparedStatement cmd2 = con.cn.prepareStatement(sql2);
 			cmd2.setString(1, ma);
 			cmd2.executeUpdate();
-
+			
 			con.cn.close();
 			return true;
 		} catch (Exception e) {

@@ -23,30 +23,23 @@
 				<strong>THÔNG TIN BỆNH ÁN</strong>
 			</h3>
 
-			<div class="row">
+		
+				<form action="" class="row">
 				<div class="col-auto my-1">
 						<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Theo
 							năm</label> <select class="custom-select mr-sm-2"
 							id="inlineFormCustomSelect" name="txt_nam">
 							<option selected value="<%=currentSelectNam%>">Năm: <%=currentSelectNam != -1 ? currentSelectNam : "ALL"%></option>
-							<option value ="-1" >Năm: ALL</option>
-							<option value="2017">2017</option>
 							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
 
 						</select>
 					</div>
 				<div class="col-auto my-1">
 						<button type="submit" class="btn btn-primary">Báo Cáo</button>
-					</div>
-				<div class="col-sm-2">
-					<button type="button" style="margin-right: 8px; float: right;"
-						class="btn btn-outline-primary"
-						onclick="document.getElementById('id01').style.display='block'">
-						<i class="fas fa-plus-circle"></i> Thêm bệnh án
-					</button>
-
 				</div>
-			</div>
+				</form>
 			<div class="row sapxep_dhm1">
 				<div class="col-sm-2"></div>
 				<div class="col-sm-7"></div>

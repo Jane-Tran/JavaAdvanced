@@ -59,11 +59,20 @@ public class BenhNhan extends HttpServlet {
 					String sex=request.getParameter("sex");
 					String address=request.getParameter("address");
 					String phoneNumber=request.getParameter("phoneNumber");
-					bn.themBenhNhan(patientID, patientName, sex, birthDay, address, phoneNumber);
+					if(sex.equals("Nam")==true||sex.equals("Nu")) {
+						if(bn.kiemTraTonTaiIDBenhNhan(patientID)) {
+							request.setAttribute("error","PatientID da ton tai !" );
+						}else {
+							bn.themBenhNhan(patientID, patientName, sex, birthDay, address, phoneNumber);
+						}
+					}else {
+						request.setAttribute("error","Gioi tinh khong hop le!" );
+					}
+					
 				}
 				request.setAttribute("dsBenhNhan", bn.getBenhNhan());
 			} catch (Exception e) {
-				// TODO: handle exception
+				e.printStackTrace();
 			}
 		
 			RequestDispatcher rd = request.getRequestDispatcher("BenhNhan.jsp");
